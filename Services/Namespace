@@ -1,14 +1,5 @@
+# Create a name space
 apiVersion: v1
-kind: Service
+kind: Namespace
 metadata:
-  name: back-end
-
-spec:
-  type: ClusterIP
-  ports:
-  - targetPort: 80
-    port: 80
-
-  selector:
-    app:  myapp
-    type: back-end
+  name: dev
