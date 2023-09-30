@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: frontend
+  name: fmyapp-replicaset
   labels:
-    app: guestbook
-    tier: frontend
+    app: myapp
+    type: front-end
 spec:
-  # modify replicas according to your case
-  replicas: 3
-  selector:
-    matchLabels:
-      tier: frontend
   template:
-    metadata:
-      labels:
-        tier: frontend
-    spec:
-      containers:
-      - name: php-redis
-        image: gcr.io/google_samples/gb-frontend:v3
+
+     metadata:
+       labels:
+         app: myapp
+         type: frontend
+     spec:
+       containers:
+       - name: php-redis
+         image: gcr.io/google_samples/gb-frontend:v3
+replicas: 3
+Selector:
+      matchLabels:
+         type: front-end
