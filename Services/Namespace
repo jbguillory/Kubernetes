@@ -1,7 +1,8 @@
 # Create a name space
+#kubectl create -f namespace-dev.yml
+#kubectl create namespace dev
 apiVersion: v1
 kind: Namespace
 metadata:
   name: dev
-#kubectl create -f namespace-dev.yml
-#kubectl create namespace dev
+
