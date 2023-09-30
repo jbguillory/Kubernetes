@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: fmyapp-replicaset
+  name: nginx-replicaset
   labels:
-    app: myapp
+    app: nginx_app
     type: front-end
 spec:
   template:
 
      metadata:
        labels:
-         app: myapp
-         type: frontend
+         app: nginx_app
+         type: front-end
      spec:
        containers:
-       - name: php-redis
-         image: gcr.io/google_samples/gb-frontend:v3
-replicas: 3
-Selector:
-      matchLabels:
-         type: front-end
+       - name: nginx-container
+         image: nginx:latest
+  replicas: 3
+  selector:
+        matchLabels:
+           type: front-end
