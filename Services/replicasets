@@ -1,0 +1,23 @@
+# run kubectl create -f .yml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+  labels:
+    app: nginx_app
+    type: front-end
+spec:
+  template:
+
+     metadata:
+       labels:
+         app: nginx_app
+         type: front-end
+     spec:
+       containers:
+       - name: nginx-container
+         image: nginx:latest
+  replicas: 3
+  selector:
+        matchLabels:
+           type: front-end
