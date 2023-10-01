@@ -1,3 +1,9 @@
+#Available
+#requiredDuringSchedulingIgnoredDuringExecution
+#preferredDuringSchedulingIgnoredDuringExection
+#Planned
+#requiredDuringSchedulingRequiredDuringExecution
+#preferredDuringSchedulingRequiredDuringExecution
 apiVersionP
 kind:
 
