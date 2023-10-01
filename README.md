@@ -1,1 +1,1 @@
-Personal repo for EZPZ YAML files
+Personal repo yaml templates
