@@ -1,0 +1,8 @@
+#gracefully move pods to another node
+
+kubectl drain node-1
+
+#restart node
+
+kubectl uncordon node-1
+# to "cordon" a node, makes it impossible for pods to move onto it
