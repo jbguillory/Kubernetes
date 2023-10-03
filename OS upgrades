@@ -6,3 +6,17 @@ kubectl drain node-1
 
 kubectl uncordon node-1
 # to "cordon" a node, makes it impossible for pods to move onto it
+
+----------------------------------
+apt-get install kubeadm=1.12.0-00
+kubeadm upgrade apply v1.12.0
+kubectl get nodes
+
+---upgrade kubelets now---
+kubectl drain node-1
+apt-get install kubelet-v1.27.0-00
+apt-get upgrade -y kubelet=1.12.0-00
+systemctl restart kubelet
+kubectl get nodes
+
+kubeadm updrade plan
