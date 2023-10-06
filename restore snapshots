@@ -1,0 +1,25 @@
+Saving SNAPSHOT
+
+API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 \
+--cacert=/etc/kubernetes/pki/etcd/ca.crt \
+--cert=/etc/kubernetes/pki/etcd/server.crt \
+--key=/etc/kubernetes/pki/etcd/server.key \
+snapshot save /opt/snapshot-pre-boot.db
+
+To RESTORE
+
+ETCDCTL_API=3 etcdctl --endpoints 10.2.0.9:2379 snapshot restore snapshotdb
+--------------or----------------------
+ETCDCTL_API=3 etcdctl snapshot restore --data-dir /var/lib/etcd-from-backup /opt/snapshot-pre-boot.db
+--------------then----------------------
+edit eh /etc/kubernetes/manifest/etcd.yaml
+  
+volumes:
+
+
+  name: etcd-certs
+- hostPath:
+      path: /var/lib/etcd-from-backup
+      type: DirectoryOrCreate
+  name: etcd-data
+ 
