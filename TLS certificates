@@ -1,0 +1,20 @@
+#API Server TLS information
+cat /etc/kubernetes/manifests/kube-apiserver.yaml
+cat /etc/kubernetes/manifests/etcd.yaml
+
+#TLS issuer info
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt -text
+openssl x509 -in /etc/kubernetes/pki/etcd/server.crt -text
+openssl x509 -in /etc/kubernetes/pki/ca.crt -text
+
+#inspect Service Logs
+journalctl -u etcd.service -l
+or
+kubectl logs etcd-master
+
+#view more logs
+doccker ps -a
+or
+crictl ps -a
+#get container ID
+docker logs <ID>
