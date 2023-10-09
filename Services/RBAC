@@ -1,0 +1,38 @@
+# to check for access or permissions
+# kubectl auth can-i create deployments
+# kubectl auth can-i delete nods --as dev-user
+ 
+kubectl create role developer --namespace=default --verb=list,create,delete --resource=pods
+
+devoloper-role.yaml
+
+apiVersion: rbac: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developer
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list", "get", "create", "update", "describe"]
+- apiGroups: [""]
+  resources: ["ConfigMap"]
+  verbs: ["create"]
+-----------------------------------------------
+#Link user to above RBAC role "Role-binding"
+
+kubectl create rolebinding dev-user-binding --namespace=default --role=devoloper --user=dev-user
+
+Devuser-developer-binding.yaml
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  mame: devuser-devoloper-binding
+subjects:
+- kind: User
+  name: dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
