@@ -18,3 +18,28 @@ or
 crictl ps -a
 #get container ID
 docker logs <ID>
+
+# Certificates API
+kubectl get csr
+kubectl get csr agent-smith -o yaml
+#Create a CertificateSigningRequest object
+#A user sent a CSR over and its saved in /root
+
+cat akshay.csr | base64 -w 0
+
+#YAML file for a CSR
+---
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: akshay
+spec:
+  groups:
+  - system:authenticated
+  request: <Paste the base64 encoded value of the CSR file>
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+  - client auth
+
+kubectl certificate approve akshay
+
